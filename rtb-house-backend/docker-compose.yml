@@ -1,0 +1,21 @@
+services:
+  db:
+    image: postgres:16
+    container_name: rtb-house-backend-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: rtb-house-backend
+    ports:
+      - '5432:5432'
+    volumes:
+      - rtb-house-backend-data:/var/lib/postgresql/data
+    networks:
+      - rtb-house-backend-network
+
+volumes:
+  rtb-house-backend-data:
+
+networks:
+  rtb-house-backend-network:
+    driver: bridge
