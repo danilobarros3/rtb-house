@@ -5,12 +5,15 @@ import { api } from "@/services/api";
 import { Seller, SellersApiResponse } from "@/types/sellers.type";
 import { useEffect, useState } from "react";
 import { Loader2 } from "lucide-react";
+import { TableOrders } from "@/components/table-orders/table-orders";
+import { Order, OrdersApiResponse } from "@/types/orders.type";
 
 export default function Orders() {
   const [sellers, setSellers] = useState<Seller[]>([]);
   const [totalSellers, setTotalSellers] = useState<number>(0);
   const [totalPrice, setTotalPrice] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(false);
+  const [orders, setOrders] = useState<Order[]>([]);
 
   const getAllSellers = async () => {
     setLoading(true);
@@ -26,8 +29,21 @@ export default function Orders() {
     }
   }
 
+  const getAllOrders = async () => {
+    setLoading(true);
+    try {
+      const response = await api.get<OrdersApiResponse>("/orders");
+      setOrders(response?.data?.dataOrders);
+    } catch (error) {
+      console.error(error, "Error getting orders");
+    } finally {
+      setLoading(false);
+    }
+  }
+
   useEffect(() => {
     getAllSellers();
+    getAllOrders();
   }, []);
 
   return (
@@ -51,6 +67,8 @@ export default function Orders() {
           ))
         )}
         </div>
+
+        <TableOrders orders={orders} />
       </div>
     </section>
   );
