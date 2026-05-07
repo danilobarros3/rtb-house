@@ -17,10 +17,38 @@ export class SellersService {
         }),
       };
 
-      const dataSellers = await this.prisma.seller.findMany({
+      const sellers = await this.prisma.seller.findMany({
         where,
+        orderBy: { id: 'asc' },
       });
-      const totalSellers = await this.prisma.seller.count({ where });
+
+      const sellerIds = sellers.map((seller) => seller.id);
+
+      const totalPriceBySellerId = await this.prisma.order.groupBy({
+        by: ['sellerId'],
+        where: {
+          sellerId: {
+            in: sellerIds,
+          },
+        },
+        _sum: {
+          price: true,
+        },
+      });
+
+      const totalPriceMap = new Map<number, number>(
+        totalPriceBySellerId.map((item) => [
+          item.sellerId,
+          item._sum.price ?? 0,
+        ]),
+      );
+
+      const dataSellers = sellers.map((seller) => ({
+        ...seller,
+        totalPrice: totalPriceMap.get(seller.id) ?? 0,
+      }));
+
+      const totalSellers = sellers.length;
 
       return {
         dataSellers,
