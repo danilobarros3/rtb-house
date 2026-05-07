@@ -1,6 +1,55 @@
+"use client";
+
+import { SellerCard } from "@/components/sellers/seller-card";
+import { api } from "@/services/api";
+import { Seller, SellersApiResponse } from "@/types/sellers.type";
+import { useEffect, useState } from "react";
+import { Loader2 } from "lucide-react";
+
 export default function Orders() {
+  const [sellers, setSellers] = useState<Seller[]>([]);
+  const [totalSellers, setTotalSellers] = useState<number>(0);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  const getAllSellers = async () => {
+    setLoading(true);
+    try {
+      const response = await api.get<SellersApiResponse>("/sellers");
+      setSellers(response?.data?.dataSellers);
+      setTotalSellers(response?.data?.totalSellers);
+    } catch (error) {
+      console.error(error, "Error getting sellers");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    getAllSellers();
+  }, []);
+
   return (
-    <div>
-    </div>
-  )
+    <section className="mx-auto w-full max-w-screen-2xl px-6 py-12">
+      <div className="w-full">
+        <div className="mb-4 flex items-center justify-between">
+          <h2 className="text-3xl font-semibold text-black">Sellers</h2>
+          <span className="text-sm text-red-500">
+            Total sellers: {totalSellers}
+          </span>
+        </div>
+
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {loading ? (
+            <div className="flex items-center justify-center">
+            <Loader2 className="h-4 w-4 animate-spin" />
+          </div>
+        ) : (
+          sellers?.map((seller) => (
+            <SellerCard key={seller?.id} seller={seller} />
+          ))
+        )}
+        </div>
+      </div>
+    </section>
+  );
 }
