@@ -1,9 +1,11 @@
 import { Geist_Mono, Inter } from "next/font/google"
-import { Footer } from "@/components/footer/footer"
+import React from "react"
+import type { ReactNode } from "react"
+import { Footer } from "../components/footer/footer"
 import "./globals.css"
-import { Header } from "@/components/header/header"
-import { ThemeProvider } from "@/components/theme-provider"
-import { cn } from "@/lib/utils"
+import { Header } from "../components/header/header"
+import { ThemeProvider } from "../components/theme-provider"
+import { cn } from "../lib/utils"
 
 
 const inter = Inter({subsets:['latin'],variable:'--font-sans'})
@@ -16,7 +18,7 @@ const fontMono = Geist_Mono({
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: ReactNode
 }>) {
   return (
     <html

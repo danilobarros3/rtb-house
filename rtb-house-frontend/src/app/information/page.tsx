@@ -1,3 +1,5 @@
+import React from "react"
+
 export default function InformationPage() {
   return (
     <section className="mx-auto w-full max-w-screen-2xl px-6 py-12">

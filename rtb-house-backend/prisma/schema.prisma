@@ -1,0 +1,28 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Seller {
+  id     Int     @id
+  name   String
+  orders Order[]
+
+  @@map("sellers")
+}
+
+model Order {
+  orderId  Int    @id
+  product  String
+  sellerId Int
+  country  String @db.Char(3)
+  price    Int
+
+  seller Seller @relation(fields: [sellerId], references: [id])
+
+  @@index([sellerId])
+  @@map("orders")
+}
