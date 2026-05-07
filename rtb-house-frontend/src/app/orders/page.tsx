@@ -7,13 +7,17 @@ import { useEffect, useState } from "react";
 import { Loader2 } from "lucide-react";
 import { TableOrders } from "@/components/table-orders/table-orders";
 import { Order, OrdersApiResponse } from "@/types/orders.type";
-
+import { SelectFilter } from "@/components/select-filter/select-filter";
 export default function Orders() {
   const [sellers, setSellers] = useState<Seller[]>([]);
   const [totalSellers, setTotalSellers] = useState<number>(0);
   const [totalPrice, setTotalPrice] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(false);
   const [orders, setOrders] = useState<Order[]>([]);
+  const [sellerIdFilter, setSellerIdFilter] = useState<string>("all");
+  const [countryFilter, setCountryFilter] = useState<string>("all");
+  const [productFilter, setProductFilter] = useState<string>("all");
+  const [search, setSearch] = useState<string>("");
 
   const getAllSellers = async () => {
     setLoading(true);
@@ -46,6 +50,26 @@ export default function Orders() {
     getAllOrders();
   }, []);
 
+  const handleSearchTerm = search.trim().toLowerCase();
+
+  const filteredOrders = orders.filter((order) => {
+    const matchesSeller =
+      sellerIdFilter === "all" ? true : order.sellerId.toString() === sellerIdFilter;
+    const matchesCountry =
+      countryFilter === "all" ? true : order.country === countryFilter;
+    const matchesProduct =
+      productFilter === "all" ? true : order.product === productFilter;
+
+    const matchesSearch =
+      handleSearchTerm === "" ||
+      order.orderId.toString().includes(handleSearchTerm) ||
+      order.product.toLowerCase().includes(handleSearchTerm) ||
+      order.sellerId.toString().includes(handleSearchTerm) ||
+      order.country.toLowerCase().includes(handleSearchTerm);
+
+    return matchesSeller && matchesCountry && matchesProduct && matchesSearch;
+  });
+
   return (
     <section className="mx-auto w-full max-w-screen-2xl px-6 py-12">
       <div className="w-full">
@@ -67,8 +91,19 @@ export default function Orders() {
           ))
         )}
         </div>
-
-        <TableOrders orders={orders} />
+        <SelectFilter
+          sellers={sellers}
+          orders={orders}
+          sellerIdFilter={sellerIdFilter}
+          countryFilter={countryFilter}
+          productFilter={productFilter}
+          search={search}
+          onSellerIdChange={setSellerIdFilter}
+          onCountryChange={setCountryFilter}
+          onProductChange={setProductFilter}
+          onSearch={setSearch}
+        />
+        <TableOrders orders={filteredOrders} />
       </div>
     </section>
   );

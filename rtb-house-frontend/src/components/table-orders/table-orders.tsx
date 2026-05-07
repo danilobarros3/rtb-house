@@ -46,7 +46,7 @@ export function TableOrders({ orders }: TableOrdersProps) {
             ))
           ) : (
             <TableRow>
-              <TableCell colSpan={5} className="text-center text-black">
+              <TableCell colSpan={5} className="text-center text-black p-12">
                 No orders found.
               </TableCell>
             </TableRow>
