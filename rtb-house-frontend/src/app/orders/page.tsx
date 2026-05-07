@@ -1,6 +1,6 @@
 "use client";
 
-import { SellerCard } from "@/components/sellers/seller-card";
+import { SellerCard } from "@/components/sellers-card/seller-card";
 import { api } from "@/services/api";
 import { Seller, SellersApiResponse } from "@/types/sellers.type";
 import { useEffect, useState } from "react";
@@ -9,6 +9,7 @@ import { Loader2 } from "lucide-react";
 export default function Orders() {
   const [sellers, setSellers] = useState<Seller[]>([]);
   const [totalSellers, setTotalSellers] = useState<number>(0);
+  const [totalPrice, setTotalPrice] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(false);
 
   const getAllSellers = async () => {
@@ -17,6 +18,7 @@ export default function Orders() {
       const response = await api.get<SellersApiResponse>("/sellers");
       setSellers(response?.data?.dataSellers);
       setTotalSellers(response?.data?.totalSellers);
+      setTotalPrice(response?.data?.totalPrice);
     } catch (error) {
       console.error(error, "Error getting sellers");
     } finally {
@@ -33,7 +35,7 @@ export default function Orders() {
       <div className="w-full">
         <div className="mb-4 flex items-center justify-between">
           <h2 className="text-3xl font-semibold text-black">Sellers</h2>
-          <span className="text-sm text-red-500">
+          <span className="text-lg font-medium text-black">
             Total sellers: {totalSellers}
           </span>
         </div>
