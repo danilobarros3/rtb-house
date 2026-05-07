@@ -1,13 +1,14 @@
 import Image from "next/image"
 import Link from "next/link"
 import logo from "@/assets/logo.svg"
-import { Button } from "@/components/ui/button"
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu"
+import { MenuIcon } from "lucide-react"
 
 export function Header() {
 
   return (
-    <header className="w-full border-b bg-white p-4">
-      <div className="flex items-center justify-center sm:justify-between p-4 max-w-screen-2xl mx-auto">
+    <header className="w-full border-b bg-white p-6">
+      <div className="flex items-center justify-between p-4 max-w-screen-2xl mx-auto">
         <Link
           href="/orders"
         >
@@ -19,14 +20,19 @@ export function Header() {
             priority
           />
         </Link>
-        <nav className="hidden sm:flex items-center gap-2">
-          <Button variant="default" className="hover:bg-primary/80">
-            <Link href="/orders" className="hover:text-primary-foreground">Orders</Link>
-          </Button>
-          <Button variant="default" className="hover:bg-primary/80">
-            <Link href="/information" className="hover:text-primary-foreground">Information</Link>
-          </Button>
-        </nav>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+              <MenuIcon className="w-4 h-4 text-black cursor-pointer" />
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuItem className="focus:bg-white/10">
+              <Link href="/orders">Orders</Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem className="focus:bg-white/10">
+              <Link href="/information">Information</Link>
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu> 
       </div>
     </header>
   )

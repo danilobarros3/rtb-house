@@ -3,7 +3,7 @@ import logo from "@/assets/logo.svg"
 
 export function Footer() {
   return (
-    <footer className="w-full border-t bg-white p-4">
+    <footer className="w-full border-t bg-white p-6">
       <div className="flex justify-center items-center p-4">
       <Image
             src={logo}
