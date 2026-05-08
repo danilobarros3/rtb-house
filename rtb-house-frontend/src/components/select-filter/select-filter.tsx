@@ -46,7 +46,7 @@ export function SelectFilter({
         <SearchFilter search={search} onSearch={onSearch} />
       </div>
 
-      <div className="flex w-full flex-shrink-0 flex-wrap items-center gap-3 sm:w-auto sm:justify-end">
+      <div className="flex w-full flex-wrap items-center gap-3 sm:w-auto sm:justify-end">
         <div className="w-full sm:w-auto">
           <Select value={sellerIdFilter} onValueChange={onSellerIdChange}>
             <SelectTrigger className="w-full justify-center border-gray-300 text-center text-black shadow-sm sm:w-[170px]">

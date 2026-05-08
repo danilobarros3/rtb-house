@@ -36,7 +36,16 @@ export default function Orders() {
   const getAllOrders = async () => {
     setLoading(true);
     try {
-      const response = await api.get<OrdersApiResponse>("/orders");
+      const response = await api.get<OrdersApiResponse>("/orders", {
+        params: {
+          sellerId: sellerIdFilter === "all" ? undefined : Number(sellerIdFilter),
+          country: countryFilter === "all" ? undefined : countryFilter,
+          product: productFilter === "all" ? undefined : productFilter,
+          search: search.trim() === "" ? undefined : search.trim(),
+          page: 1,
+          limit: 10,
+        },
+      });
       setOrders(response?.data?.dataOrders);
     } catch (error) {
       console.error(error, "Error getting orders");
@@ -47,28 +56,15 @@ export default function Orders() {
 
   useEffect(() => {
     getAllSellers();
-    getAllOrders();
   }, []);
 
-  const handleSearchTerm = search.trim().toLowerCase();
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      getAllOrders();
+    }, 3000);
 
-  const filteredOrders = orders.filter((order) => {
-    const matchesSeller =
-      sellerIdFilter === "all" ? true : order.sellerId.toString() === sellerIdFilter;
-    const matchesCountry =
-      countryFilter === "all" ? true : order.country === countryFilter;
-    const matchesProduct =
-      productFilter === "all" ? true : order.product === productFilter;
-
-    const matchesSearch =
-      handleSearchTerm === "" ||
-      order.orderId.toString().includes(handleSearchTerm) ||
-      order.product.toLowerCase().includes(handleSearchTerm) ||
-      order.sellerId.toString().includes(handleSearchTerm) ||
-      order.country.toLowerCase().includes(handleSearchTerm);
-
-    return matchesSeller && matchesCountry && matchesProduct && matchesSearch;
-  });
+    return () => clearTimeout(timeout);
+  }, [sellerIdFilter, countryFilter, productFilter, search]);
 
   return (
     <section className="mx-auto w-full max-w-screen-2xl px-6 py-12">
@@ -103,7 +99,7 @@ export default function Orders() {
           onProductChange={setProductFilter}
           onSearch={setSearch}
         />
-        <TableOrders orders={filteredOrders} />
+        <TableOrders orders={orders} />
       </div>
     </section>
   );
