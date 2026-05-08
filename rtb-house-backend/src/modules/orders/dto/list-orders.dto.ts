@@ -23,6 +23,10 @@ export class ListOrdersDto {
   @IsOptional()
   product?: string;
 
+  @IsString()
+  @IsOptional()
+  search?: string;
+
   @Type(() => Number)
   @IsInt()
   @Min(1)

@@ -14,16 +14,31 @@ export class OrdersService {
         sellerId,
         country,
         product,
+        search,
         page = 1,
         limit = 10,
       } = filters;
       const skip = (page - 1) * limit;
+      const normalizedSearch = search?.trim();
+      const searchIsNumeric =
+        normalizedSearch !== undefined && /^[0-9]+$/.test(normalizedSearch);
 
       const where: Prisma.OrderWhereInput = {
         ...(orderId !== undefined && { orderId }),
         ...(sellerId !== undefined && { sellerId }),
         ...(country && { country: country.toUpperCase() }),
         ...(product && { product: { contains: product, mode: 'insensitive' } }),
+        ...(normalizedSearch && {
+          OR: [
+            { product: { contains: normalizedSearch, mode: 'insensitive' } },
+            ...(searchIsNumeric
+              ? [
+                  { orderId: Number(normalizedSearch) },
+                  { sellerId: Number(normalizedSearch) },
+                ]
+              : []),
+          ],
+        }),
       };
 
       const dataOrders = await this.prisma.order.findMany({
