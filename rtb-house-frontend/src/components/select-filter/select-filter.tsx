@@ -110,7 +110,7 @@ export function SelectFilter({
         </div>
 
         <div className="w-full sm:w-auto">
-        <Button onClick={onClearFilters} className="w-full hover:bg-red-600 sm:w-auto">
+        <Button onClick={onClearFilters} className="w-full hover:bg-red-600 sm:w-auto" disabled={sellerIdFilter === "all" && countryFilter === "all" && productFilter === "all" && search === ""}>
           Clear filters
         </Button>
         </div>
