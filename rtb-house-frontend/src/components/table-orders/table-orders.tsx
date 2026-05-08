@@ -17,7 +17,7 @@ type TableOrdersProps = {
 export function TableOrders({ orders }: TableOrdersProps) {
   return (
     <section className="mt-8 rounded-lg border border-gray-300 bg-white p-4 shadow-sm">
-      <h3 className="mb-3 text-lg font-semibold text-black">Orders list</h3>
+      <h3 className="mb-3 text-center text-lg font-semibold text-black">Orders list</h3>
       <Table className="bg-white text-black">
         <TableHeader className="border-y border-gray-300">
           <TableRow className="border-gray-300 hover:bg-transparent">
