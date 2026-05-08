@@ -10,6 +10,7 @@ import {
 import { SearchFilter } from "../search-filter/search-filter";
 import { Seller } from "@/types/sellers.type";
 import { Order } from "@/types/orders.type";
+import { Button } from "../ui/button";
 
 type SelectFilterProps = {
   sellers: Seller[];
@@ -39,6 +40,13 @@ export function SelectFilter({
   
   const countryOptions = Array.from(new Set(orders.map((order) => order.country)));
   const productOptions = Array.from(new Set(orders.map((order) => order.product)));
+
+  const onClearFilters = () => {
+    onSellerIdChange("all");
+    onCountryChange("all");
+    onProductChange("all");
+    onSearch("");
+  }
 
   return (
     <div className="mt-6 mb-4 flex w-full flex-col gap-3 sm:flex-row sm:items-stretch sm:gap-3">
@@ -99,6 +107,12 @@ export function SelectFilter({
               ))}
             </SelectContent>
           </Select>
+        </div>
+
+        <div className="w-full sm:w-auto">
+        <Button onClick={onClearFilters} className="w-full hover:bg-red-600 sm:w-auto">
+          Clear filters
+        </Button>
         </div>
       </div>
     </div>
