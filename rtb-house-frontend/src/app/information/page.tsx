@@ -6,7 +6,7 @@ import { InfoSectionCard } from "@/components/info-section-card/info-section-car
 
 export default function InformationPage() {
   return (
-    <section className="min-h-screen w-full bg-zinc-100 px-6 py-10">
+    <section className="w-full bg-zinc-100 px-6 py-10">
       <div className="mx-auto flex max-w-screen-2xl flex-col gap-6">
         <InfoSectionCard
           title="Information"
@@ -38,7 +38,7 @@ export default function InformationPage() {
           subtitle="Acknowledgements"
           description="I would like to thank RTB HOUSE for the opportunity to participate in this selection process and for the chance to demonstrate my technical skills through this project."
         />
-        </div>
+      </div>
     </section>
   )
 }
