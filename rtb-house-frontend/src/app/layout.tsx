@@ -30,7 +30,9 @@ export default function RootLayout({
         <ThemeProvider>
           <div className="flex min-h-screen flex-col">
             <Header />
-            <main className="flex-1 bg-zinc-100">{children}</main>
+            <main className="flex min-h-0 flex-1 flex-col bg-zinc-100">
+              {children}
+            </main>
             <Footer />
           </div>
         </ThemeProvider>
