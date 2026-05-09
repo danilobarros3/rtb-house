@@ -18,14 +18,14 @@ export function TableOrders({ orders }: TableOrdersProps) {
   return (
     <section className="mt-8 rounded-lg border border-gray-300 bg-white p-4 shadow-sm">
       <h3 className="mb-3 text-center text-lg font-semibold text-black">Orders list</h3>
-      <Table className="bg-white text-black">
-        <TableHeader className="border-y border-gray-300">
+      <Table className="w-full border-collapse border border-gray-300 bg-white text-black">
+        <TableHeader>
           <TableRow className="border-gray-300 hover:bg-transparent">
-            <TableHead className="w-[160px] text-black">Order ID</TableHead>
-            <TableHead className="text-black">Product</TableHead>
-            <TableHead className="text-right text-black">Price</TableHead>
-            <TableHead className="text-right text-black">Seller</TableHead>
-            <TableHead className="text-right text-black">Country</TableHead>
+            <TableHead className="border border-gray-300 text-center text-black">Order ID</TableHead>
+            <TableHead className="border border-gray-300 text-center text-black">Product</TableHead>
+            <TableHead className="border border-gray-300 text-center text-black">Price</TableHead>
+            <TableHead className="border border-gray-300 text-center text-black">Seller</TableHead>
+            <TableHead className="border border-gray-300 text-center text-black">Country</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -33,20 +33,22 @@ export function TableOrders({ orders }: TableOrdersProps) {
             orders.map((order) => (
               <TableRow
                 key={order.orderId}
-                className="border-gray-200 hover:bg-transparent"
+                className="border-gray-300 hover:bg-transparent"
               >
-                <TableCell className="font-medium text-black">{order?.orderId}</TableCell>
-                <TableCell className="text-black">{order?.product}</TableCell>
-                <TableCell className="text-right text-black">
+                <TableCell className="border border-gray-300 text-center font-medium text-black">
+                  {order?.orderId}
+                </TableCell>
+                <TableCell className="border border-gray-300 text-center text-black">{order?.product}</TableCell>
+                <TableCell className="border border-gray-300 text-center text-black">
                   {formatCurrencyUSD(order?.price)}
                 </TableCell>
-                <TableCell className="text-right text-black">{order?.sellerId}</TableCell>
-                <TableCell className="text-right text-black">{order?.country}</TableCell>
+                <TableCell className="border border-gray-300 text-center text-black">{order?.sellerId}</TableCell>
+                <TableCell className="border border-gray-300 text-center text-black">{order?.country}</TableCell>
               </TableRow>
             ))
           ) : (
-            <TableRow>
-              <TableCell colSpan={5} className="text-center text-black p-12">
+            <TableRow className="bg-white hover:bg-transparent">
+              <TableCell colSpan={5} className="border border-gray-300 bg-white p-12 text-center text-black">
                 No orders found.
               </TableCell>
             </TableRow>
