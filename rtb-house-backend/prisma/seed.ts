@@ -23,9 +23,9 @@ const pool = new Pool({
 const adapter = new PrismaPg(pool);
 const prisma = new PrismaClient({ adapter });
 
-const frontendDataDir = path.resolve(process.cwd(), '../rtb-house-frontend/src/utils/data');
-const sellersPath = path.join(frontendDataDir, 'sellers.json');
-const ordersPath = path.join(frontendDataDir, 'orders.json');
+const dataDir = path.resolve(process.cwd(), 'src/utils/data');
+const sellersPath = path.join(dataDir, 'sellers.json');
+const ordersPath = path.join(dataDir, 'orders.json');
 
 async function loadJson<T>(filePath: string): Promise<T> {
   const content = await readFile(filePath, 'utf-8');
