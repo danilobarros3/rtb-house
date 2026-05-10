@@ -16,8 +16,22 @@ const fontMono = Geist_Mono({
   variable: "--font-mono",
 })
 
+const siteDescription =
+  "This project is a sales management dashboard where each seller has their own orders, products, and country data. The application was built using mocked data, which was later transformed into a PostgreSQL database seed for backend integration."
+
 export const metadata: Metadata = {
   title: "RTB House",
+  description: siteDescription,
+  openGraph: {
+    title: "RTB House",
+    description: siteDescription,
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "RTB House",
+    description: siteDescription,
+  },
   icons: {
     icon: [{ url: favicon.src, type: "image/png", sizes: "225x225" }],
   },
