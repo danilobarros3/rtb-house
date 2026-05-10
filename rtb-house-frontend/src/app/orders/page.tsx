@@ -12,7 +12,8 @@ export default function Orders() {
   const [sellers, setSellers] = useState<Seller[]>([]);
   const [totalSellers, setTotalSellers] = useState<number>(0);
   const [totalPrice, setTotalPrice] = useState<number>(0);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loadingSellers, setLoadingSellers] = useState<boolean>(true);
+  const [loadingOrders, setLoadingOrders] = useState<boolean>(true);
   const [orders, setOrders] = useState<Order[]>([]);
   const [sellerIdFilter, setSellerIdFilter] = useState<string>("all");
   const [countryFilter, setCountryFilter] = useState<string>("all");
@@ -20,7 +21,7 @@ export default function Orders() {
   const [search, setSearch] = useState<string>("");
 
   const getAllSellers = async () => {
-    setLoading(true);
+    setLoadingSellers(true);
     try {
       const response = await api.get<SellersApiResponse>("/sellers");
       setSellers(response?.data?.dataSellers);
@@ -29,12 +30,12 @@ export default function Orders() {
     } catch (error) {
       console.error(error, "Error getting sellers");
     } finally {
-      setLoading(false);
+      setLoadingSellers(false);
     }
   }
 
   const getAllOrders = async () => {
-    setLoading(true);
+    setLoadingOrders(true);
     try {
       const response = await api.get<OrdersApiResponse>("/orders", {
         params: {
@@ -50,7 +51,7 @@ export default function Orders() {
     } catch (error) {
       console.error(error, "Error getting orders");
     } finally {
-      setLoading(false);
+      setLoadingOrders(false);
     }
   }
 
@@ -59,6 +60,7 @@ export default function Orders() {
   }, []);
 
   useEffect(() => {
+    setLoadingOrders(true);
     const timeout = setTimeout(() => {
       getAllOrders();
     }, 3000);
@@ -77,7 +79,7 @@ export default function Orders() {
         </div>
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {loading ? (
+          {loadingSellers ? (
             <div className="flex items-center justify-center">
             <Loader2 className="h-4 w-4 animate-spin" />
           </div>
@@ -99,7 +101,7 @@ export default function Orders() {
           onProductChange={setProductFilter}
           onSearch={setSearch}
         />
-        <TableOrders orders={orders} />
+        <TableOrders orders={orders} loading={loadingOrders} />
       </div>
     </section>
   );

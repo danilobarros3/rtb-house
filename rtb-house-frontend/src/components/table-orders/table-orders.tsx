@@ -9,12 +9,14 @@ import {
 } from "@/components/ui/table";
 import { Order } from "../../types/orders.type";
 import { formatCurrencyUSD } from "@/utils/masks";
+import { Loader2 } from "lucide-react";
 
 type TableOrdersProps = {
   orders: Order[];
+  loading?: boolean;
 };
 
-export function TableOrders({ orders }: TableOrdersProps) {
+export function TableOrders({ orders, loading = false }: TableOrdersProps) {
   return (
     <section className="mt-8 rounded-lg border border-gray-300 bg-white p-4 shadow-sm">
       <h3 className="mb-3 text-center text-lg font-semibold text-black">Orders list</h3>
@@ -29,7 +31,16 @@ export function TableOrders({ orders }: TableOrdersProps) {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {orders.length ? (
+          {loading ? (
+            <TableRow className="bg-white hover:bg-transparent">
+              <TableCell colSpan={5} className="border border-gray-300 bg-white p-12 text-center text-black">
+                <div className="flex items-center justify-center gap-2">
+                  <Loader2 className="h-5 w-5 animate-spin text-black" />
+                  <span>Loading orders…</span>
+                </div>
+              </TableCell>
+            </TableRow>
+          ) : orders.length ? (
             orders.map((order) => (
               <TableRow
                 key={order.orderId}
