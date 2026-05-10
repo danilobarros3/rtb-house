@@ -60,7 +60,7 @@ function SelectTrigger({
 function SelectContent({
   className,
   children,
-  position = "item-aligned",
+  position = "popper",
   align = "center",
   ...props
 }: React.ComponentProps<typeof SelectPrimitive.Content>) {
@@ -112,7 +112,7 @@ function SelectItem({
     <SelectPrimitive.Item
       data-slot="select-item"
       className={cn(
-        "relative flex w-full items-center gap-1.5 rounded-md py-1 pr-8 pl-1.5 text-sm text-black outline-hidden select-none focus:bg-gray-100 focus:text-black data-highlighted:bg-gray-100 data-highlighted:text-black data-[state=checked]:bg-gray-100 data-[state=checked]:text-black data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 *:[span]:last:flex *:[span]:last:items-center *:[span]:last:gap-2 cursor-pointer",
+        "relative flex w-full min-w-0 items-center gap-1.5 rounded-sm py-1.5 pr-8 pl-2 text-sm text-black outline-hidden select-none focus:bg-gray-100 focus:text-black data-highlighted:bg-gray-100 data-highlighted:text-black data-[state=checked]:bg-gray-100 data-[state=checked]:text-black data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 *:[span]:last:flex *:[span]:last:items-center *:[span]:last:gap-2 cursor-pointer",
         className
       )}
       {...props}
