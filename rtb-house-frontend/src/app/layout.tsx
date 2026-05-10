@@ -1,6 +1,7 @@
 import { Geist_Mono, Inter } from "next/font/google"
-import React from "react"
+import type { Metadata } from "next"
 import type { ReactNode } from "react"
+import favicon from "../assets/favicon.ico"
 import { Footer } from "../components/footer/footer"
 import "./globals.css"
 import { Header } from "../components/header/header"
@@ -14,6 +15,13 @@ const fontMono = Geist_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
 })
+
+export const metadata: Metadata = {
+  title: "RTB House",
+  icons: {
+    icon: [{ url: favicon.src, type: "image/png", sizes: "225x225" }],
+  },
+}
 
 export default function RootLayout({
   children,
