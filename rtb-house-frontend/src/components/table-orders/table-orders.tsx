@@ -10,13 +10,23 @@ import {
 import { Order } from "../../types/orders.type";
 import { formatCurrencyUSD } from "@/utils/masks";
 import { Loader2 } from "lucide-react";
+import { Pagination } from "@/components/pagination/pagination";
 
 type TableOrdersProps = {
   orders: Order[];
   loading?: boolean;
+  currentPage: number;
+  totalPages: number;
+  onPageChange: (page: number) => void;
 };
 
-export function TableOrders({ orders, loading = false }: TableOrdersProps) {
+export function TableOrders({
+  orders,
+  loading = false,
+  currentPage,
+  totalPages,
+  onPageChange,
+}: TableOrdersProps) {
   return (
     <section className="mt-8 rounded-lg border border-gray-300 bg-white p-4 shadow-sm">
       <h3 className="mb-3 text-center text-lg font-semibold text-black">Orders list</h3>
@@ -66,6 +76,13 @@ export function TableOrders({ orders, loading = false }: TableOrdersProps) {
           )}
         </TableBody>
       </Table>
+      <div className="mt-4 border-t border-gray-200 pt-4">
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={onPageChange}
+        />
+      </div>
     </section>
   );
 }

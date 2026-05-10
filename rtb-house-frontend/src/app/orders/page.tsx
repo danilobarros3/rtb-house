@@ -19,6 +19,13 @@ export default function Orders() {
   const [countryFilter, setCountryFilter] = useState<string>("all");
   const [productFilter, setProductFilter] = useState<string>("all");
   const [search, setSearch] = useState<string>("");
+  const [page, setPage] = useState<number>(1);
+  const [paginationData, setPaginationData] = useState({
+    totalPages: 1,
+    page: 1,
+    totalOrders: 0,
+    limit: 10,
+  });
 
   const getAllSellers = async () => {
     setLoadingSellers(true);
@@ -34,7 +41,7 @@ export default function Orders() {
     }
   }
 
-  const getAllOrders = async () => {
+  const getAllOrders = async (currentPage: number) => {
     setLoadingOrders(true);
     try {
       const response = await api.get<OrdersApiResponse>("/orders", {
@@ -43,10 +50,17 @@ export default function Orders() {
           country: countryFilter === "all" ? undefined : countryFilter,
           product: productFilter === "all" ? undefined : productFilter,
           search: search.trim() === "" ? undefined : search.trim(),
-          page: 1,
+          page: currentPage,
           limit: 10,
         },
       });
+      setPaginationData({
+        totalPages: response?.data?.pagination?.totalPages || 1,
+        page: response?.data?.pagination?.page || 1,
+        totalOrders: response?.data?.pagination?.totalOrders || 0,
+        limit: 10,
+      });
+      setPage(response?.data?.pagination?.page || 1);
       setOrders(response?.data?.dataOrders);
     } catch (error) {
       console.error(error, "Error getting orders");
@@ -62,11 +76,22 @@ export default function Orders() {
   useEffect(() => {
     setLoadingOrders(true);
     const timeout = setTimeout(() => {
-      getAllOrders();
-    }, 3000);
+      getAllOrders(page);
+    }, 500);
 
     return () => clearTimeout(timeout);
+  }, [sellerIdFilter, countryFilter, productFilter, search, page]);
+
+  useEffect(() => {
+    setPage(1);
   }, [sellerIdFilter, countryFilter, productFilter, search]);
+
+
+  const handlePageChange = (newPage: number) => {
+    if (newPage < 1 || newPage > paginationData.totalPages) return;
+    setPage(newPage);
+    setPaginationData((prev) => ({ ...prev, page: newPage }));
+  };
 
   return (
     <section className="mx-auto w-full max-w-screen-2xl px-6 py-12">
@@ -101,7 +126,13 @@ export default function Orders() {
           onProductChange={setProductFilter}
           onSearch={setSearch}
         />
-        <TableOrders orders={orders} loading={loadingOrders} />
+        <TableOrders
+          orders={orders}
+          loading={loadingOrders}
+          currentPage={page}
+          totalPages={paginationData.totalPages}
+          onPageChange={handlePageChange}
+        />
       </div>
     </section>
   );
