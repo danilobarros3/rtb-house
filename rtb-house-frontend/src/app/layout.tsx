@@ -7,6 +7,7 @@ import "./globals.css"
 import { Header } from "../components/header/header"
 import { ThemeProvider } from "../components/theme-provider"
 import { cn } from "../lib/utils"
+import { Toaster } from "sonner"
 
 
 const inter = Inter({subsets:['latin'],variable:'--font-sans'})
@@ -54,6 +55,7 @@ export default function RootLayout({
             <Header />
             <main className="flex min-h-0 flex-1 flex-col bg-zinc-100">
               {children}
+              <Toaster position="top-right" richColors={true} />
             </main>
             <Footer />
           </div>
