@@ -17,9 +17,13 @@ Next.js app with shadcn/ui.
 
 - **[Node.js](https://nodejs.org/) ≥ 20.9.0** — Next.js 16 refuses to run on older versions. If you see `Node.js version ">=20.9.0" is required`, upgrade Node (e.g. with [nvm](https://github.com/nvm-sh/nvm): `nvm install 20 && nvm use 20`, or install the current LTS from nodejs.org).
 
-### 1. Install dependencies
+### 0. Enter the frontend folder
 
-From the `rtb-house-frontend` directory:
+```bash
+cd rtb-house-frontend
+```
+
+### 1. Install dependencies
 
 ```bash
 npm install
