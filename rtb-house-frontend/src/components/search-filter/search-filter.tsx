@@ -10,7 +10,7 @@ export function SearchFilter({ onSearch, search }: SearchFilterProps) {
     <div className="flex w-full max-w-full  gap-2">
       <Input
         type="text"
-        placeholder="Search"
+        placeholder="Search by product"
         value={search}
         onChange={(e) => onSearch(e.target.value)}
         className="flex-1 rounded-lg border-gray-300 shadow-sm"
