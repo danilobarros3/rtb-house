@@ -24,11 +24,11 @@ export function Header() {
           <DropdownMenuTrigger asChild>
               <MenuIcon className="w-4 h-4 text-black cursor-pointer" />
           </DropdownMenuTrigger>
-          <DropdownMenuContent>
-            <DropdownMenuItem className="focus:bg-white/10">
+          <DropdownMenuContent className="bg-white">
+            <DropdownMenuItem className="text-black">
               <Link href="/orders">Orders</Link>
             </DropdownMenuItem>
-            <DropdownMenuItem className="focus:bg-white/10">
+            <DropdownMenuItem className="text-black">
               <Link href="/information">Information</Link>
             </DropdownMenuItem>
           </DropdownMenuContent>
