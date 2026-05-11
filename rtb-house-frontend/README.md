@@ -1,20 +1,49 @@
-# Next.js template
+# RTB House — Frontend
 
-This is a Next.js template with shadcn/ui.
+Next.js app with shadcn/ui.
 
-## Adding components
+## Frontend technologies
 
-To add components to your app, run the following command:
+- Framework: Next.js 16 (with React 19 + React DOM 19)
+- Language: TypeScript
+- Styling: Tailwind CSS 4
+- UI / Components: shadcn/ui
+- Icons: lucide-react
+- HTTP client: axios
+
+## Getting started
+
+### Prerequisites
+
+- **[Node.js](https://nodejs.org/) ≥ 20.9.0** — Next.js 16 refuses to run on older versions. If you see `Node.js version ">=20.9.0" is required`, upgrade Node (e.g. with [nvm](https://github.com/nvm-sh/nvm): `nvm install 20 && nvm use 20`, or install the current LTS from nodejs.org).
+
+### 1. Install dependencies
+
+From the `rtb-house-frontend` directory:
+
+```bash
+npm install
+```
+
+### 2. Development server
+
+```bash
+npm run dev
+```
+
+Runs Next.js with Turbopack at [http://localhost:3000](http://localhost:3000).
+
+## Adding components (shadcn/ui)
+
+To add UI components:
 
 ```bash
 npx shadcn@latest add button
 ```
 
-This will place the ui components in the `components` directory.
+Components are placed under `components/ui`.
 
 ## Using components
-
-To use the components in your app, import them as follows:
 
 ```tsx
 import { Button } from "@/components/ui/button";
