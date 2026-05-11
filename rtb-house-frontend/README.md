@@ -52,3 +52,19 @@ Components are placed under `components/ui`.
 ```tsx
 import { Button } from "@/components/ui/button";
 ```
+
+## Orders Page
+<img width="2560" height="1080" alt="image" src="https://github.com/user-attachments/assets/2133fa62-e847-41ff-8985-01de572c5052" />
+<img width="484" height="922" alt="Screenshot 2026-05-11 at 07 56 03" src="https://github.com/user-attachments/assets/035aa5f4-427e-468a-bbf9-e1005fe96e9e" />
+
+## Informations Page
+<img width="2560" height="1080" alt="Screenshot 2026-05-11 at 08 05 30" src="https://github.com/user-attachments/assets/ca289309-0d01-49ec-9552-eefcc420655f" />
+<img width="441" height="918" alt="Screenshot 2026-05-11 at 08 06 15" src="https://github.com/user-attachments/assets/3536734e-5bad-421f-b7b0-b57999794e51" />
+
+## Not Found Page
+<img width="2560" height="1080" alt="Screenshot 2026-05-11 at 08 07 04" src="https://github.com/user-attachments/assets/cc076fe9-4cca-44ef-af79-8d774b27217c" />
+<img width="468" height="948" alt="Screenshot 2026-05-11 at 08 07 49" src="https://github.com/user-attachments/assets/540c3dd5-2686-4a75-af37-908959ae9051" />
+
+
+
+
