@@ -8,6 +8,7 @@ import { Loader2 } from "lucide-react";
 import { TableOrders } from "@/components/table-orders/table-orders";
 import { Order, OrdersApiResponse } from "@/types/orders.type";
 import { SelectFilter } from "@/components/select-filter/select-filter";
+import { toast } from "sonner";
 export default function Orders() {
   const [sellers, setSellers] = useState<Seller[]>([]);
   const [totalSellers, setTotalSellers] = useState<number>(0);
@@ -34,8 +35,10 @@ export default function Orders() {
       setSellers(response?.data?.dataSellers);
       setTotalSellers(response?.data?.totalSellers);
       setTotalPrice(response?.data?.totalPrice);
-    } catch (error) {
-      console.error(error, "Error getting sellers");
+    } catch (error: any) {
+      const errorMessage = error?.response?.data?.message || "Error getting sellers, try again later";
+      console.error(error, errorMessage);
+      toast.error(errorMessage);
     } finally {
       setLoadingSellers(false);
     }
@@ -62,8 +65,10 @@ export default function Orders() {
       });
       setPage(response?.data?.pagination?.page || 1);
       setOrders(response?.data?.dataOrders);
-    } catch (error) {
-      console.error(error, "Error getting orders");
+    } catch (error: any) {
+      const errorMessage = error?.response?.data?.message || "Error getting orders, try again later";
+      console.error(error, errorMessage);
+      toast.error(errorMessage);
     } finally {
       setLoadingOrders(false);
     }
