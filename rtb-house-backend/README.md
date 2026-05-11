@@ -1,98 +1,125 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# RTB House - Backend
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Backend API for the RTB House project, built with NestJS, TypeScript, Prisma, and PostgreSQL.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Technologies
 
-## Description
+- Framework: NestJS
+- Language: TypeScript
+- ORM: Prisma
+- Database: PostgreSQL
+- Validation: class-validator + class-transformer
+- Containerization: Docker Compose (database service)
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Requirements
 
-## Project setup
+- Node.js (20+ recommended)
+- npm
+- Docker + Docker Compose (to run PostgreSQL locally)
 
-```bash
-$ npm install
+## Environment variables
+
+Create/update the `.env` file in the backend root with:
+
+```env
+DATABASE_URL="postgresql://postgres:postgres@localhost:5432/rtb-house-backend?schema=public"
+PORT=3001
 ```
 
-## Compile and run the project
+`PORT` is optional. If not set, the API runs on `3001`.
+
+## How to run (local)
+
+0. Enter the backend folder:
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+cd rtb-house-backend
 ```
 
-## Run tests
+Then run:
+
+1. Install dependencies:
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+npm install
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+2. Start the database with Docker:
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+docker compose up -d
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+3. Run database setup (generates Prisma Client, applies migrations, and runs seed):
 
-## Resources
+```bash
+npm run db:setup
+```
 
-Check out a few resources that may come in handy when working with NestJS:
+4. Start the API in development mode:
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+```bash
+npm run start:dev
+```
 
-## Support
+API available at `http://localhost:3001`.
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+## Quick flow (single command)
 
-## Stay in touch
+To run setup + API in watch mode:
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+```bash
+cd rtb-house-backend
+npm run start:dev:setup
+```
 
-## License
+This command runs:
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+- `npm run prisma:generate`
+- `npm run prisma:deploy`
+- `npm run prisma:seed`
+- `npm run start:dev`
+
+## Docker (database)
+
+The backend `docker-compose.yml` starts only PostgreSQL:
+
+- Container: `rtb-house-backend-db`
+- Port: `5432:5432`
+- User: `postgres`
+- Password: `postgres`
+- Database: `rtb-house-backend`
+
+Useful commands:
+
+```bash
+docker compose up -d
+docker compose ps
+docker compose logs -f db
+docker compose down
+```
+
+## Seed
+
+The seed populates `sellers` and `orders` from JSON files in `src/utils/data`.
+
+Run seed manually:
+
+```bash
+npm run prisma:seed
+```
+
+Note: seed clears current `orders` and `sellers` data before inserting again.
+
+## Main endpoints
+
+- `GET /orders`
+  - filters: `orderId`, `sellerId`, `country`, `product`, `search`, `page`, `limit`
+- `GET /sellers`
+
+## Main scripts
+
+- `npm run start:dev` - starts backend in watch mode
+- `npm run db:setup` - generate + migrate deploy + seed
+- `npm run prisma:generate` - generates Prisma Client
+- `npm run prisma:seed` - runs seed
