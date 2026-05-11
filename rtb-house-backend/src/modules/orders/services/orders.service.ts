@@ -59,7 +59,10 @@ export class OrdersService {
         },
       };
     } catch (error) {
-      throw new InternalServerErrorException(error.message);
+      console.error(error);
+      throw new InternalServerErrorException(
+        'Failed to get orders, try again later',
+      );
     }
   }
 }
