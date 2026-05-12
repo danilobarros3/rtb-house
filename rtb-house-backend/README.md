@@ -115,11 +115,11 @@ Note: seed clears current `orders` and `sellers` data before inserting again.
 
 - `GET /orders`
   - filters: `orderId`, `sellerId`, `country`, `product`, `search`, `page`, `limit`
-<img width="2182" height="1034" alt="Screenshot 2026-05-12 at 06 41 47" src="https://github.com/user-attachments/assets/088290da-7653-4616-ad03-acf1559ad6e6" />
-<img width="2181" height="1036" alt="Screenshot 2026-05-12 at 06 40 00" src="https://github.com/user-attachments/assets/f8ddb642-1ea4-48ea-a1ac-87cff7d05664" />
+<img width="2180" height="1031" alt="Screenshot 2026-05-12 at 08 15 18" src="https://github.com/user-attachments/assets/23b27c27-8808-4028-bd00-3889cbbc3307" />
+<img width="2178" height="1032" alt="Screenshot 2026-05-12 at 08 15 46" src="https://github.com/user-attachments/assets/1e2bd7c5-3d3a-46be-aa0d-7ceb72a7cea6" />
 
 - `GET /sellers`
-<img width="2180" height="1032" alt="Screenshot 2026-05-12 at 06 42 38" src="https://github.com/user-attachments/assets/b2d91150-6913-4633-ae49-09af9fc9143f" />
+<img width="2182" height="1033" alt="Screenshot 2026-05-12 at 08 18 47" src="https://github.com/user-attachments/assets/02e90ba8-2ba2-46b1-b69e-dfc339d52d3c" />
 
 ## Main scripts
 
