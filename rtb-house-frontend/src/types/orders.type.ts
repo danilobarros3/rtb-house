@@ -4,6 +4,7 @@ export type Order = {
   price: number;
   sellerId: number;
   country: string;
+  formattedPrice: string;
 };
 
 export type OrdersApiResponse = {

@@ -8,7 +8,6 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Order } from "../../types/orders.type";
-import { formatCurrencyUSD } from "@/utils/masks";
 import { Loader2 } from "lucide-react";
 import { Pagination } from "@/components/pagination/pagination";
 
@@ -61,7 +60,7 @@ export function TableOrders({
                 </TableCell>
                 <TableCell className="border border-gray-300 text-center text-black">{order?.product}</TableCell>
                 <TableCell className="border border-gray-300 text-center text-black">
-                  {formatCurrencyUSD(order?.price)}
+                  {order?.formattedPrice}
                 </TableCell>
                 <TableCell className="border border-gray-300 text-center text-black">{order?.sellerId}</TableCell>
                 <TableCell className="border border-gray-300 text-center text-black">{order?.country}</TableCell>
