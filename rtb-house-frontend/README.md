@@ -54,7 +54,7 @@ import { Button } from "@/components/ui/button";
 ```
 
 ## Orders Page
-<img width="2560" height="1080" alt="image" src="https://github.com/user-attachments/assets/2133fa62-e847-41ff-8985-01de572c5052" />
+<img width="2559" height="1077" alt="Screenshot 2026-05-12 at 08 07 51" src="https://github.com/user-attachments/assets/c8f9ba00-5f59-4c10-a9ab-26307b6a11c3" />
 <img width="484" height="922" alt="Screenshot 2026-05-11 at 07 56 03" src="https://github.com/user-attachments/assets/035aa5f4-427e-468a-bbf9-e1005fe96e9e" />
 
 ## Informations Page
