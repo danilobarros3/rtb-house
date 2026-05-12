@@ -12,7 +12,7 @@ import { toast } from "sonner";
 export default function Orders() {
   const [sellers, setSellers] = useState<Seller[]>([]);
   const [totalSellers, setTotalSellers] = useState<number>(0);
-  const [totalPrice, setTotalPrice] = useState<number>(0);
+  const [totalPrice, setTotalPrice] = useState<string>("0");
   const [loadingSellers, setLoadingSellers] = useState<boolean>(true);
   const [loadingOrders, setLoadingOrders] = useState<boolean>(true);
   const [orders, setOrders] = useState<Order[]>([]);
