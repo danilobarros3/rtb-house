@@ -58,7 +58,7 @@ import { Button } from "@/components/ui/button";
 <img width="484" height="922" alt="Screenshot 2026-05-11 at 07 56 03" src="https://github.com/user-attachments/assets/035aa5f4-427e-468a-bbf9-e1005fe96e9e" />
 
 ## Informations Page
-<img width="2560" height="1080" alt="Screenshot 2026-05-11 at 08 05 30" src="https://github.com/user-attachments/assets/ca289309-0d01-49ec-9552-eefcc420655f" />
+<img width="2560" height="1080" alt="Screenshot 2026-05-12 at 06 34 13" src="https://github.com/user-attachments/assets/e1ae0224-27f9-47b8-8cb7-839f93554a20" />
 <img width="441" height="918" alt="Screenshot 2026-05-11 at 08 06 15" src="https://github.com/user-attachments/assets/3536734e-5bad-421f-b7b0-b57999794e51" />
 
 ## Not Found Page
