@@ -53,10 +53,10 @@ export class OrdersService {
       const totalOrders = await this.prisma.order.count({ where });
 
       return {
-        dataOrders: dataOrders?.map((order) => ({
+        dataOrders: dataOrders?.map(({ seller, ...order }) => ({
           ...order,
           formattedPrice: formatCurrencyUSD(Number(order.price)),
-          sellerName: order.seller.name,
+          sellerName: seller.name,
         })),
         pagination: {
           page,
