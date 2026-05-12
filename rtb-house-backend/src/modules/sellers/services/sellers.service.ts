@@ -2,6 +2,7 @@ import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { PrismaService } from '../../../prisma/prisma.service';
 import { SellersDto } from '../dto/sellers.dto';
+import { formatCurrencyUSD } from 'src/utils/masks';
 
 @Injectable()
 export class SellersService {
@@ -45,7 +46,7 @@ export class SellersService {
 
       const dataSellers = sellers.map((seller) => ({
         ...seller,
-        totalPrice: totalPriceMap.get(seller.id) ?? 0,
+        totalPrice: formatCurrencyUSD(totalPriceMap.get(seller.id) ?? 0),
       }));
 
       const totalSellers = sellers.length;
