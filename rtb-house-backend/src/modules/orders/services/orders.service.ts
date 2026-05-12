@@ -2,6 +2,7 @@ import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { PrismaService } from '../../../prisma/prisma.service';
 import { ListOrdersDto } from '../dto/list-orders.dto';
+import { formatCurrencyUSD } from 'src/utils/masks';
 
 @Injectable()
 export class OrdersService {
@@ -40,7 +41,6 @@ export class OrdersService {
           ],
         }),
       };
-
       const dataOrders = await this.prisma.order.findMany({
         where,
         skip,
@@ -50,7 +50,10 @@ export class OrdersService {
       const totalOrders = await this.prisma.order.count({ where });
 
       return {
-        dataOrders,
+        dataOrders: dataOrders?.map((order) => ({
+          ...order,
+          formattedPrice: formatCurrencyUSD(Number(order.price)),
+        })),
         pagination: {
           page,
           limit,
