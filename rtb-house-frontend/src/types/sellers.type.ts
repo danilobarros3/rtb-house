@@ -1,11 +1,11 @@
 export type Seller = {
   id: number;
   name: string;
-  totalPrice: number;
+  totalPrice: string;
 };
 
 export type SellersApiResponse = {
   dataSellers: Seller[];
   totalSellers: number;
-  totalPrice: number;
+  totalPrice: string;
 };
