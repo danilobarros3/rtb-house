@@ -62,7 +62,7 @@ export function TableOrders({
                 <TableCell className="border border-gray-300 text-center text-black">
                   {order?.formattedPrice}
                 </TableCell>
-                <TableCell className="border border-gray-300 text-center text-black">{order?.sellerId}</TableCell>
+                <TableCell className="border border-gray-300 text-center text-black">{order?.sellerName}</TableCell>
                 <TableCell className="border border-gray-300 text-center text-black">{order?.country}</TableCell>
               </TableRow>
             ))
