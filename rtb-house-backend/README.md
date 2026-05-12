@@ -13,7 +13,7 @@ Backend API for the RTB House project, built with NestJS, TypeScript, Prisma, an
 
 ## Requirements
 
-- Node.js (20+ recommended)
+- Node.js (20.19+ recommended)
 - npm
 - Docker + Docker Compose (to run PostgreSQL locally)
 
